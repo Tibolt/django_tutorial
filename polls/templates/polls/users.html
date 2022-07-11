@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+        
+    </head>
+    
+    <body>
+        <div class="text-center mx-5"
+            <h2>users</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if user_list %}
+                        {% for user in user_list %}
+                            <tr>
+                                <th scope="row">{{user.id}}</th>
+                                <td> {{user.name}}</td>
+                                <td> {{user.last_name}}</td>
+                                <td> {{user.age}}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <p>Empty</p>
+                    {% endif %}
+                </tbody>
+            </table>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a class="btn btn-primary" href="/polls" role="button">Back</a>
+            </div>
+        </div>
+    </body>
+</html>
