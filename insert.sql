@@ -1,8 +1,5 @@
-INSERT INTO polls_choice (choice_text, votes, correct, question_id)
-VALUES ("24",0, true, 10),
-("40",0, false, 10),
-("Marek juz nie zyje",0, false, 10)
-;
+INSERT INTO polls_user (name, last_name, age, username)
+VALUES ("Weranda","Płytka", 50, trzeci_user);
 
 
 -- DELETE from polls_choice

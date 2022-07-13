@@ -15,4 +15,6 @@ urlpatterns = [
     # ex: /pools/users/
     path('users/', views.users, name = 'users'),
     path('<int:question_id>/vote/', views.vote, name='vote'),
+    path('result?score=<int:points>', views.result, name = 'result'),
+    path('results_all', views.results_all, name = 'results_all')
 ]

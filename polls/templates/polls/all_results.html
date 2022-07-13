@@ -1,0 +1,38 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Test Results</h1>
+        <div class="text-center mx-5"
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if users_results %}
+                        {% for user in users_results %}
+                            <tr>
+                                <th scope="row"> {{user.name}}</th>
+                                <td> {{user.last_name}}</td>
+                                <td> {{user.age}}</td>
+                                <td> {{user.score}}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <p>Empty</p>
+                    {% endif %}
+                </tbody>
+            </table>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a class="btn btn-primary" href="{% url 'polls:index' %}" role="button">Back</a>
+            </div>
+        </div>
+    
+</div>
+{% endblock content %}

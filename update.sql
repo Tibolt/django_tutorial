@@ -1,5 +1,5 @@
-select * from polls_choice;
+select * from polls_user;
 
-UPDATE polls_choice
-set choice_text = "nie"
+UPDATE polls_user
+set username = "test"
 where id = 1;

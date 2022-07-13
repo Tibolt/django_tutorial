@@ -21,10 +21,25 @@ def index(request):
                     if item.correct == True:
                         points += 1
                 item.save()
-            print("Points" + str(points))
-        return HttpResponse("Your score: " + str(points))
+        if request.user.is_authenticated:
+            if User.objects.filter(username=request.user.username).exists():
+                tempUser = User.objects.filter(username=request.user.username).get()
+                tempUser.score = points
+                tempUser.save()
+
+        # return render(request, 'polls/result.html', {'score' : points})
+        return HttpResponseRedirect(reverse('polls:result', args=(points,)))
 
     return render(request, 'polls/index.html', context)
+
+def results_all(request):
+    if request.user.is_superuser:
+        users_results = User.objects.all()
+        return render(request, 'polls/all_results.html', {'users_results' : users_results})
+    return HttpResponse("You are not authorized")
+
+def result(request, points):
+    return render(request, 'polls/result.html', {'score' : points})
 
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
@@ -34,7 +49,7 @@ def detail(request, question_id):
     return render(request, 'polls/detail.html', {'question': question})
 
 def users(request):
-    user_list = User.objects.all
+    user_list = User.objects.all()
     return render(request, 'polls/users.html', {'user_list': user_list})
 
 def results(request, question_id):

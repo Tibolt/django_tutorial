@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'members',
-    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
@@ -127,5 +126,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "polls:index"
 LOGOUT_REDIRECT_URL = "members:login_u"
-AUTH_USER_MODEL = "members.CustomUser"
+# AUTH_USER_MODEL = "members.CustomUser"
 
