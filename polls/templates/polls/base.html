@@ -4,28 +4,32 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <title>First site</title>
+	<link rel="stylesheet" href="{% static 'style.css' %}"/>
     </head>
     <body>
     <div>
-      <header>
-        <div class="nav-left">
-          <h1><a href="">Django blog</a></h1>
-        </div>
-        <div class="nav-item">
-          <h1><a href="{% url 'members:login_u' %}">Login</a></h1>
-        </div>
-      </header>
-      {% if user.is_authenticated %}
-        <p>Hi {{ user.username }}!</p>
-        <p><a href="{% url 'logout' %}">Log out</a></p>
-        {% if user.is_superuser %}
-          <p><a href="{% url 'polls:results_all' %}">Results</a></p>
-        {% endif %}
-      {% else %}
-        <p>You are not logged in.</p>
-        <a href="{% url 'members:login_u' %}">Log In</a> |
-        <a href="">Sign Up</a>
-      {% endif %}
+	<header>
+		<nav>
+		    <ul class="nav-links">
+			<li><a href="\">QUIZ</a></li>
+			<li><a href="{% url 'polls:result' %}">MY SCORE</a></li>
+			{% if user.is_authenticated %}
+				{% if user.is_superuser %}
+				<li><a href="{% url 'polls:results_all' %}">Results</a></li>
+				{% endif %}
+			{% endif %}
+		    </ul>
+		</nav>
+		<div class="nav-right">
+		{% if user.is_authenticated %}
+		Hi {{ user.username }}!
+		 <a class="cta" href="\accounts\logout"><button>Log out</button></a>
+		      {% else %}
+		 You are not logged in.
+       		 <a class="cta" href="{% url 'members:login_u' %}"><button>Login</button></a>
+	      {% endif %}
+		</div>
+    </header>
     {% block content %}
     {% endblock content %}
     </div>

@@ -26,9 +26,10 @@ def index(request):
                 tempUser = User.objects.filter(username=request.user.username).get()
                 tempUser.score = points
                 tempUser.save()
+        request.session['score'] = points
 
         # return render(request, 'polls/result.html', {'score' : points})
-        return HttpResponseRedirect(reverse('polls:result', args=(points,)))
+        return HttpResponseRedirect(reverse('polls:result'))
 
     return render(request, 'polls/index.html', context)
 
@@ -38,7 +39,11 @@ def results_all(request):
         return render(request, 'polls/all_results.html', {'users_results' : users_results})
     return HttpResponse("You are not authorized")
 
-def result(request, points):
+def result(request):
+    if 'score' in request.session:
+        points = request.session['score']
+    else:
+        points = 0
     return render(request, 'polls/result.html', {'score' : points})
 
 def vote(request, question_id):
