@@ -4,11 +4,15 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from .models import Question, User, Choice
+import random
+
 
 def index(request):
     
     latest_question_list = Question.objects.all()
-    answear_list = Choice.objects.all()
+
+    answear_list = list(Choice.objects.all())
+    random.shuffle(answear_list)
     context = {'latest_question_list': latest_question_list, 'answear_list': answear_list}
 
     points = 0
