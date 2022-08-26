@@ -15,7 +15,7 @@
 			<li><a href="{% url 'polls:result' %}">MY SCORE</a></li>
 			{% if user.is_authenticated %}
 				{% if user.is_superuser %}
-				<li><a href="{% url 'polls:results_all' %}">Results</a></li>
+				<li><a href="{% url 'polls:results_all' %}">RESULTS</a></li>
 				{% endif %}
 			{% endif %}
 		    </ul>
